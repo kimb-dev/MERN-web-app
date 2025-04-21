@@ -3,13 +3,16 @@ import {
     Container,
     Flex,
     HStack,
-    Text
+    Text,
+    useColorMode
   } from '@chakra-ui/react';
   import { Link } from "react-router-dom";
-  import { PlusSquareIcon } from "@chakra-ui/icons";
+  import { PlusSquareIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
   import React from 'react';
-  
+
   const Navbar = () => {
+    const { colorMode, toggleColorMode } = useColorMode();
+
     return (
       <Container maxW="1140px" px={4}>
         <Flex
@@ -31,13 +34,17 @@ import {
           >
             <Link to="/">Product Store</Link>
           </Text>
-  
+
           <HStack spacing={2} alignItems="center">
             <Link to="/create">
               <Button leftIcon={<PlusSquareIcon fontSize={20} />}>
                 Add Product
               </Button>
             </Link>
+
+            <Button onClick={toggleColorMode}>
+              {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            </Button>
           </HStack>
         </Flex>
       </Container>
